@@ -1,12 +1,18 @@
-import { Text, View, StyleSheet,SafeAreaView,TouchableOpacity,ImageBackground } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Text, View, StyleSheet,SafeAreaView,TouchableOpacity,ImageBackground,Image,FlatList,ScrollView} from 'react-native';
+import React from 'react';
+import { list } from '../images.js/homePageJpg';
+
+
 
 export function Home ({navigation}) {
   return (
+    
 <SafeAreaView>
+
+<ImageBackground style={styles.firstjpg} source={{uri:"https://www.wulu.net.ng/wp-content/uploads/2019/12/home-new-bg-free-img.jpg"}}>
   
 <View style={styles.TOP}>
-      <Text style={{fontStyle:'italic',fontSize:50,fontWeight:500}}>
+      <Text style={{fontStyle:'italic',fontSize:50,fontWeight:'500',color:'white'}}>
         DNK
       </Text>
 <View style={styles.no}>
@@ -16,7 +22,7 @@ export function Home ({navigation}) {
 </View>
 </View>
 
-<ImageBackground source={{uri:"https://img.freepik.com/free-vector/blue-copy-space-digital-background_23-2148821698.jpg?size=626&ext=jpg"}}>
+
 <View style={styles.firstText}>
     <Text style={{textAlign:'center',fontWeight:500,fontSize:50,color:'white'}}>
         Redefine Your Shopping Experience 
@@ -32,35 +38,49 @@ export function Home ({navigation}) {
   </Text>
 </View>
 
-  <TouchableOpacity>
-  <View style={styles.fistButton}>
-    <Text style={{alignSelf:'center',color:'white',marginTop:20}}>
-      SHOP NOW
-    </Text>
-  </View>
-  </TouchableOpacity>
+
+<TouchableOpacity>
+    <View style={styles.fistButton}>
+      <Text style={{alignSelf:'center',color:'black',marginTop:20}}>
+        SHOP NOW
+      </Text>
+    </View>
+</TouchableOpacity>
 
   <TouchableOpacity>
   <View style={styles.secondButton}>
-    <Text style={{alignSelf:'center',color:'white',marginTop:20}}>
+    <Text style={{alignSelf:'center',color:'white',marginTop:20,fontWeight:'bold'}}>
       FIND MORE
     </Text>
   </View>
   </TouchableOpacity>
+</ImageBackground>
 
-  </ImageBackground>
+<View style={{}}>
+<FlatList
+ horizontal={true}
+ data={list}
+ renderItem={({item}) => (<View>
+  <Image source={{uri:item.imageUrl}} style={{height:30, width:200,}}/>
+ </View> )}
+ ItemSeparatorComponent={<View style={{width:110}}/>}
+ showsHorizontalScrollIndicator={false}
+  />
+  </View>
+ 
 
 </SafeAreaView>
+
 )}
 
 const styles = StyleSheet.create({
   TOP:{
-    paddingTop:50, 
+    marginTop:50, 
     flexDirection:'row',
     gap:300  
   },
   no:{
-    paddingTop:25
+    marginTop:25
   },
   firstText:{
     marginTop:50,
@@ -72,16 +92,20 @@ const styles = StyleSheet.create({
   },
   fistButton:{
     alignSelf:'center',
-    marginTop:50,
+    marginTop:40,
     width:'90%',
     height:60,
-    backgroundColor:'black',
+    backgroundColor:'white',
   },
   secondButton:{
     alignSelf:'center',
+    borderWidth:2,
     marginTop:20,
     width:'90%',
     height:60,
-    backgroundColor:'black',
+    borderColor:'white'
   },
+  firstjpg:{
+    height:'87%',
+  }
 })
